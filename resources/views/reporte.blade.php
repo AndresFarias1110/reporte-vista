@@ -22,7 +22,7 @@
 	<tr>
 		<td></td>
 		<td></td>
-		<td colspan="6" style="text-align: center; font-weight: 600;">VERIFICACIÓN DE RECOMENDACIONES 1ER SEMESTRE 2015</td>
+		<td colspan="6" style="text-align: center; font-weight: 600;">{{ $incidencia->titulo_recomendacion }}</td>
 		<td></td>
 		<td>Preparó:</td>
 		<td colspan="2">______________</td>
@@ -53,9 +53,9 @@
 		<td></td>
 		<td colspan="6" style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">PERIODO SUJETO A REVISIÓN:</td>
 		<td style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">DE:</td>
-		<td colspan="2" style="border: 8px solid #000;">ene-15</td>
+		<td colspan="2" style="border: 8px solid #000;">{{ $incidencia->fecha_inicio }}</td>
 		<td style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">HASTA:</td>
-		<td colspan="2" style="border: 8px solid #000;">jun-15</td>
+		<td colspan="2" style="border: 8px solid #000;">{{ $incidencia->fecha_compromiso }}</td>
 
 	</tr>
 	<tr>

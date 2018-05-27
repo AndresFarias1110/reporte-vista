@@ -98,59 +98,55 @@ class ReporteController extends Controller {
 
 		    $request->file('import_file')->move(
 		        base_path() . $path, $imageName
-		    );
+			);
+			
+			$array = array();
 
 			$arraydatas = array();
-
+			$arraydatas1 = [];
 			$arraydatas = \Excel::load(base_path() . '/public/files/import_file.xlsx', 'UTF-8')->get();
-
-
+		
 			foreach ($arraydatas as $incidencia) {
-				# code...
-				// return $incidencia['semestre'];
-
-				// return utf8_encode($incidencia['observaciones']);
+				# code...;
 				$incidencia_row = Incidencia::create([
 					'semestre' => $incidencia['semestre'],
-					// 'id_rec' => $incidencia['id_rec'],
-					// 'titulo_recomendacion' => $incidencia['titulo_recomendacion'],
-					// 'recomendacion' => utf8_encode($incidencia['recomendacion']),
-					// 'tipo_recomendacion' => $incidencia['tipo_recomendacion'],
-					// 'clasificacion' => $incidencia['clasificacion'],
-					// 'aplica_para' => $incidencia['aplica_para'],
-					// 'riesgo' => $incidencia['riesgo'],
-					// 'esfuerzo' => $incidencia['esfuerzo'],
-					// 'impacto' => $incidencia['impacto'],
-					'observaciones' => utf8_encode($incidencia['observaciones']),
-					// 'area_emisora' => $incidencia['area_emisora'],
-					// 'etapa' => $incidencia['etapa'],
-					// 'estado' => $incidencia['estado'],
-					// 'recordatorios_definidos' => $incidencia['recordatorios_definidos'],
-					// 'empresa' => $incidencia['empresa'],
-					// 'direccion_funcional' => $incidencia['direccion_funcional'],
-					// 'direccion_ejecutiva' => $incidencia['direccion_ejecutiva'],
-					// 'area_responsable' => $incidencia['area_responsable'],
-					// 'responsable' => $incidencia['responsable'],
-					// 'revision_asociada' => $incidencia['revision_asociada'],
-					// 'estatus' => $incidencia['estatus'],
-					// 'comentarios' => utf8_encode($incidencia['comentarios']),
-					// 'afectacion_al_35' => $incidencia['afectacion_al_35'],
-					// 'atencion_en_sistema' => $incidencia['atencion_en_sistema'],
-					// 'nueva_area_responsable' => $incidencia['nueva_area_responsable'],
-					// 'nuevo_responsable' => $incidencia['nuevo_responsable'],
+					 'id_rec' => $incidencia['id_rec'],
+					 'titulo_recomendacion' => $incidencia['titulo_recomendacion'],
+					'recomendacion' => str_replace('', ' ', $incidencia['recomendacion']),
+					 'tipo_recomendacion' => $incidencia['tipo_recomendacion'],
+					 'clasificacion' => $incidencia['clasificacion'],
+					 'aplica_para' => $incidencia['aplica_para'],
+					 'riesgo' => $incidencia['riesgo'],
+					 'esfuerzo' => $incidencia['esfuerzo'],
+					 'impacto' => $incidencia['impacto'],
+					'observaciones' => str_replace('', ' ', $incidencia['observaciones']),
+					 'area_emisora' => $incidencia['area_emisora'],
+					 'etapa' => $incidencia['etapa'],
+					 'estado' => $incidencia['estado'],
+					 'recordatorios_definidos' => $incidencia['recordatorios_definidos'],
+					 'empresa' => $incidencia['empresa'],
+					 'direccion_funcional' => $incidencia['direccion_funcional'],
+					 'direccion_ejecutiva' => $incidencia['direccion_ejecutiva'],
+					 'area_responsable' => $incidencia['area_responsable'],
+					 'responsable' => $incidencia['responsable'],
+					 'revision_asociada' => $incidencia['revision_asociada'],
+					 'estatus' => $incidencia['estatus'],
+					 'comentarios' => str_replace('', ' ', $incidencia['comentarios']),
+					 'afectacion_al_35' => $incidencia['afectacion_al_35'],
+					 'atencion_en_sistema' => $incidencia['atencion_en_sistema'],
+					 'nueva_area_responsable' => $incidencia['nueva_area_responsable'],
+					 'nuevo_responsable' => $incidencia['nuevo_responsable'],
+					 'fecha_implementacion' => $incidencia['fecha_implementacion'],
+					 'fecha_compromiso' => $incidencia['fecha_compromiso'],
+					'fecha_inicio' => $incidencia['fecha_inicio'],
+					'nueva_fecha_compromiso' => $incidencia['nueva_fecha_compromiso']
 				]);
-
-				$incidencia_row->fecha_compromiso =  $incidencia['fecha_compromiso'] != '' ? $incidencia['fecha_compromiso']: null;
-				$incidencia_row->fecha_inicio =  $incidencia['fecha_inicio'] != '' ? $incidencia['fecha_inicio']: null;
-				$incidencia_row->fecha_implementacion =  $incidencia['fecha_implementacion'] != '' ? $incidencia['fecha_implementacion']: null;
-				$incidencia_row->nuevo_responsable =  $incidencia['nuevo_responsable'] != '' ? $incidencia['nuevo_responsable']: null;
-				// $incidencia_row->nueva_fecha_compromiso =  $incidencia['nueva_fecha_compromiso'] != '' ? $incidencia['nueva_fecha_compromiso']: null;
 
 				$incidencia_row->save();
 
 			}
 
-			return $arraydatas;
+			return 'Successfull';
         }
 
         return "No hay archivos";

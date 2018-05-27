@@ -20,6 +20,7 @@ class Incidencia extends Model {
 		'semestre',
 		'id_rec',
 		'recomendacion',
+		'titulo_recomendacion',
 		'tipo_recomendacion',
 		'clasificacion',
 		'aplica_para',
