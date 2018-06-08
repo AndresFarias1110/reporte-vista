@@ -19,6 +19,7 @@ class Incidencia extends Model {
 	protected $fillable = [
 		'semestre',
 		'id_rec',
+		'riesgo',
 		'recomendacion',
 		'titulo_recomendacion',
 		'tipo_recomendacion',
@@ -40,7 +41,7 @@ class Incidencia extends Model {
 		'fecha_inicio',
 		'fecha_implementacion',
 		'revision_asociada',
-		'estatus',
+		'status',
 		'comentarios',
 		'afectacion_al_35',
 		'revision_asociada',

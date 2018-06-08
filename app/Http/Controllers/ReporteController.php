@@ -63,26 +63,41 @@ class ReporteController extends Controller {
 
 			$incidencias = Incidencia::where('responsable', '=', $responsable)->get();
 
-			$excel->sheet('Caratula', function($sheet) use($incidencias){
-				$sheet->loadView('caratula')->with('nominas', $incidencias);
+			$excel->sheet('CARATULA', function($sheet) use($incidencias){
+				$sheet->getStyle('B8:B15')->getAlignment()->setWrapText(true);
+				$sheet->setSize('C8', 40, 40);
+				$sheet->loadView('caratula')->with('incidencias', $incidencias);
 			});
 
-			$cont = 0;
 		    //$nominas =  Incidencia::where('representante', '=', 'andres');
-			foreach ($incidencias as  $incidencia) {
+			foreach ($incidencias as $index => $incidencia) {
+				$contR = $index + 1;
 				# code..
-				$cont ++;
-				$excel->sheet('R' . $cont, function($sheet) use($incidencia) {
+				$excel->sheet('R'. $contR, function($sheet) use($incidencia, $contR) {
 					// $sheet->getStyle('A6:B6' , $sheet->getHighestRow())->getAlignment()->setWrapText(true);
 					// $sheet->setWidth('A', 100);
-
+					
 					$sheet->getStyle('B12:B15')->getAlignment()->setWrapText(true);
 					$sheet->setSize('B12', 50, 100);
+					$sheet->setSize('N6', 1, 1);
 
 					// $sheet->setHeight(6, 300);
-					$sheet->loadView('reporte')->with('incidencia', $incidencia);
+					$sheet->loadView('reporte')->with('incidencia', $incidencia)->with('contr','R'. $contR);
 				});
 			}
+
+			$excel->sheet('RES', function($sheet) use($incidencias){
+				$sheet->getStyle('O7:O1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('C7:O1000')->getAlignment()->setWrapText(true);
+				$sheet->setSize('O7', 100, 100);
+				$sheet->getStyle("F6")->getAlignment()->setTextRotation(90);
+				$sheet->getStyle("G6")->getAlignment()->setTextRotation(90);
+				$sheet->loadView('res')->with('incidencias', $incidencias);
+			});
+
+			$excel->sheet('CA', function($sheet) use($incidencias){
+				$sheet->loadView('carta_aceptacion')->with('incidencias', $incidencias);
+			});
 
 
 		})->export('xlsx')->download();
@@ -115,7 +130,7 @@ class ReporteController extends Controller {
 					'recomendacion' => str_replace('', ' ', $incidencia['recomendacion']),
 					 'tipo_recomendacion' => $incidencia['tipo_recomendacion'],
 					 'clasificacion' => $incidencia['clasificacion'],
-					 'aplica_para' => $incidencia['aplica_para'],
+					//  'aplica_para' => $incidencia['aplica_para'],
 					 'riesgo' => $incidencia['riesgo'],
 					 'esfuerzo' => $incidencia['esfuerzo'],
 					 'impacto' => $incidencia['impacto'],
@@ -130,7 +145,7 @@ class ReporteController extends Controller {
 					 'area_responsable' => $incidencia['area_responsable'],
 					 'responsable' => $incidencia['responsable'],
 					 'revision_asociada' => $incidencia['revision_asociada'],
-					 'estatus' => $incidencia['estatus'],
+					 'status' => $incidencia['estatus'],
 					 'comentarios' => str_replace('', ' ', $incidencia['comentarios']),
 					 'afectacion_al_35' => $incidencia['afectacion_al_35'],
 					 'atencion_en_sistema' => $incidencia['atencion_en_sistema'],

@@ -22,7 +22,9 @@
 	<tr>
 		<td></td>
 		<td></td>
-		<td colspan="6" style="text-align: center; font-weight: 600;">{{ $incidencia->titulo_recomendacion }}</td>
+		<td colspan="6" style="text-align: center; font-weight: 600;">
+			"VERIFICACIÓN DE RECOMENDACIONES 1ER SEMESTRE 2015"	
+		</td>
 		<td></td>
 		<td>Preparó:</td>
 		<td colspan="2">______________</td>
@@ -64,9 +66,9 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td style="border: 9px solid #000; font-weight: 600;">R1</td>
+		<td style="border: 9px solid #000; font-weight: 600;">{{ $contr }}</td>
 		<td style="border: 8px solid #000;">{{ $incidencia->id_rec }}</td>
-		<td colspan="10" style="border: 8px solid #000;">{{ $incidencia->titulo_recomendacion }}</td>
+		<td colspan="10" style="border: 8px solid #000; height: 100px;">{{ $incidencia->titulo_recomendacion }}</td>
 	</tr>
 	<tr>
 
@@ -89,5 +91,11 @@
 		<td></td>
 		<td colspan="6" style="border: 8px solid #000; height: 100">{{ $incidencia->comentarios }}</td>
 		<td colspan="6" style="border: 8px solid #000;"></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td></td>
+		<td colspan="3" style="border: 8px solid #000; background-color: #FF8800; color: #ffffff; text-align: center; font-weight: 600;">ESTATUS DE LA RECOMENDACIÓN</td>
+		<td colspan="3" style="border: 8px solid #000;"><b>{{ $incidencia->status }}</b></td>
 	</tr>
 </table>
