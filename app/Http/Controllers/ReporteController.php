@@ -52,7 +52,8 @@ class ReporteController extends Controller {
 	}
 
 	public function getTodosIncidencias(){
-		return Incidencia::all();
+		return \DB::table('incidencias')->distinct()->get();
+		// return Incidencia::all()->distinct()->get();
 	}
 
 	public function getReporte(Request $request, $responsable){
@@ -96,9 +97,25 @@ class ReporteController extends Controller {
 			});
 
 			$excel->sheet('CA', function($sheet) use($incidencias){
+				$sheet->getStyle('B7:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('N8:N1000')->getAlignment()->setWrapText(true);
+				$sheet->setSize('B7', 30, 50);
+				$sheet->setSize('N5', 30, 50);
+				$sheet->setSize('N8', 100, 100);
+				$sheet->getStyle("C5")->getAlignment()->setTextRotation(90);
+				$sheet->getStyle("D5")->getAlignment()->setTextRotation(90);
+				$sheet->getStyle("E5")->getAlignment()->setTextRotation(90);
+				$sheet->getStyle("F5")->getAlignment()->setTextRotation(90);
 				$sheet->loadView('carta_aceptacion')->with('incidencias', $incidencias);
 			});
 
+			$excel->sheet('ASIG', function($sheet) use($incidencias){
+				$sheet->setSize('B5', 100, 100);
+				$sheet->setSize('F5', 100, 100);
+				$sheet->getStyle('B5:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('F5:F1000')->getAlignment()->setWrapText(true);
+				$sheet->loadView('asig')->with('incidencias', $incidencias);
+			});
 
 		})->export('xlsx')->download();
 	}
