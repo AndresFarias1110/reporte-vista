@@ -14,6 +14,8 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::get('reportes/{responsable}', 'ReporteController@getReporte');
+Route::get('reportes/direccion/funcional/df', 'ReporteController@getReporteDF');
+Route::get('reportes/direccion/funcional/de', 'ReporteController@getReporteDE');
 
 Route::get('home', 'HomeController@index');
 

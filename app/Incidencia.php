@@ -44,7 +44,6 @@ class Incidencia extends Model {
 		'status',
 		'comentarios',
 		'afectacion_al_35',
-		'revision_asociada',
 		'atencion_en_sistema',
 		'nueva_fecha_compromiso',
 		'nuevo_responsable',

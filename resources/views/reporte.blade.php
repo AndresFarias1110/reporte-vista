@@ -33,24 +33,13 @@
 	<tr>
 		<td></td>
 		<td></td>
-		<td colspan="6" style="text-align: center; font-weight: 600;">AISI-XX15</td>
-		<td></td>
-		<td>Revisó:</td>
-		<td colspan="2">______________</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
 		<td colspan="6" style="text-align: center; font-weight: 600;">{{ $incidencia->area_responsable }}</td>
 		<td></td>
 		<td>Revisó:</td>
 		<td colspan="2">______________</td>
 		<td></td>
 	</tr>
-	<tr>
-
-	</tr>
+	
 	<tr style="border: 8px solid #000;">
 		<td></td>
 		<td colspan="6" style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">PERIODO SUJETO A REVISIÓN:</td>
@@ -59,6 +48,10 @@
 		<td style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">HASTA:</td>
 		<td colspan="2" style="border: 8px solid #000;">{{ $incidencia->fecha_compromiso }}</td>
 
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="12" style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">OBJETIVOS A REVISAR:</td>
 	</tr>
 	<tr>
 		<td></td>

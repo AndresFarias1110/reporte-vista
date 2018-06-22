@@ -127,7 +127,7 @@
                     NO
                 @endif
             </td>
-            <td>
+            <td style="background-color: #bbbbbb">
                 @if( $incidencia->riesgo == 'ALTO' )
                     35%
                 @endif
@@ -151,7 +151,7 @@
                     NO
                 @endif
             </td>
-            <td>
+            <td style="background-color: #bbbbbb">
                 @if($incidencia->atencion_en_sistema == 'NO')
                     5%
                 @endif
@@ -160,7 +160,7 @@
                 @endif
             </td>
             <td>
-                total
+                
             </td>
             <td>
                 {{ $incidencia->comentarios }}
@@ -223,5 +223,26 @@
         <td colspan="4"><b>Firma del Auditado</b></td>
         <td colspan="2"></td>
         <td colspan="5"><b>Firma del Auditor</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="4" style="text-align: center">
+            <b> {{ $incidencias[0]->responsable }} </b>
+        </td>
+        <td colspan="2"></td>
+        <td colspan="5"><b></b></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <b>Fecha de aceptación:</b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>NOTA:</b>
+        </td>
+        <td colspan="6">
+            El responsable queda como enterado sobre el seguimiento realizado a las recomendaciones a su cargo.
+        </td>
     </tr>
 </table>

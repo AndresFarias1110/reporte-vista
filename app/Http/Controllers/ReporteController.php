@@ -56,6 +56,73 @@ class ReporteController extends Controller {
 		// return Incidencia::all()->distinct()->get();
 	}
 
+	public function getReporteDF(Request $request) {
+		
+		\Excel::create('Direccion-ejecutiva-df', function($excel) {
+			$todas_incidencias = Incidencia::all();
+			
+			$incidencias = Incidencia::select('empresa')->groupBy('empresa')->get();
+
+			$excel->sheet('DIRECCIONF_DF', function($sheet) use($incidencias, $todas_incidencias){
+				// $sheet->setSize('B5', 30, 50);
+				// $sheet->setSize('F5', 30, 50);
+				$sheet->setSize('A1', 20, 30);
+				$sheet->setSize('B1', 20, 30);
+				$sheet->setSize('C1', 20, 30);
+				$sheet->setSize('D1', 20, 30);
+				$sheet->setSize('E1', 30, 30);
+				$sheet->setSize('F1', 30, 30);
+				$sheet->setSize('G1', 30, 30);
+				$sheet->setSize('H1', 30, 30);
+				$sheet->getStyle('A1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('B1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('C1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('D1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('E1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('F1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('G1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('H1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('I1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->loadView('direccion_funcional_df')->with('incidencias', $incidencias)->with('todas_incidencias', $todas_incidencias) ;
+			});
+
+
+		})->export('xlsx')->download();
+	}        
+
+	public function getReporteDE(Request $request) {
+		\Excel::create('Direccion-ejecutiva-de', function($excel) {
+			$todas_incidencias = Incidencia::all();
+			
+			$incidencias = Incidencia::select('empresa')->groupBy('empresa')->get();
+
+			$excel->sheet('DIRECCIONF_DE', function($sheet) use($incidencias, $todas_incidencias){
+				// $sheet->setSize('B5', 30, 50);
+				// $sheet->setSize('F5', 30, 50);
+				$sheet->setSize('A1', 20, 30);
+				$sheet->setSize('B1', 20, 30);
+				$sheet->setSize('C1', 20, 30);
+				$sheet->setSize('D1', 20, 30);
+				$sheet->setSize('E1', 30, 30);
+				$sheet->setSize('F1', 30, 30);
+				$sheet->setSize('G1', 30, 30);
+				$sheet->setSize('H1', 30, 30);
+				$sheet->getStyle('A1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('B1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('C1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('D1:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('E1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('F1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('G1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('H1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('I1:F1000')->getAlignment()->setWrapText(true);
+				$sheet->loadView('direccion_funcional_de')->with('incidencias', $incidencias)->with('todas_incidencias', $todas_incidencias) ;
+			});
+
+
+		})->export('xlsx')->download();
+	}
+
 	public function getReporte(Request $request, $responsable){
 
 		// return Incidencia::where('responsable', '=', $responsable)->get();
@@ -63,6 +130,8 @@ class ReporteController extends Controller {
 		\Excel::create('Matriz-de-Seguimiento-response', function($excel) use($responsable){
 
 			$incidencias = Incidencia::where('responsable', '=', $responsable)->get();
+			// $todas_incidencias = Incidencia::all();
+			
 
 			$excel->sheet('CARATULA', function($sheet) use($incidencias){
 				$sheet->getStyle('B8:B15')->getAlignment()->setWrapText(true);
@@ -99,9 +168,9 @@ class ReporteController extends Controller {
 			$excel->sheet('CA', function($sheet) use($incidencias){
 				$sheet->getStyle('B7:B1000')->getAlignment()->setWrapText(true);
 				$sheet->getStyle('N8:N1000')->getAlignment()->setWrapText(true);
-				$sheet->setSize('B7', 30, 50);
-				$sheet->setSize('N5', 30, 50);
-				$sheet->setSize('N8', 100, 100);
+				$sheet->setSize('B7', 30, 30);
+				$sheet->setSize('N5', 30, 30);
+				$sheet->setSize('N8', 60, 60);
 				$sheet->getStyle("C5")->getAlignment()->setTextRotation(90);
 				$sheet->getStyle("D5")->getAlignment()->setTextRotation(90);
 				$sheet->getStyle("E5")->getAlignment()->setTextRotation(90);
@@ -110,13 +179,16 @@ class ReporteController extends Controller {
 			});
 
 			$excel->sheet('ASIG', function($sheet) use($incidencias){
-				$sheet->setSize('B5', 100, 100);
-				$sheet->setSize('F5', 100, 100);
+				$sheet->setSize('B5', 30, 50);
+				$sheet->setSize('F5', 30, 50);
+				$sheet->getStyle('A5:B1000')->getAlignment()->setWrapText(true);
 				$sheet->getStyle('B5:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('C5:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('D5:B1000')->getAlignment()->setWrapText(true);
+				$sheet->getStyle('E5:F1000')->getAlignment()->setWrapText(true);
 				$sheet->getStyle('F5:F1000')->getAlignment()->setWrapText(true);
 				$sheet->loadView('asig')->with('incidencias', $incidencias);
 			});
-
 		})->export('xlsx')->download();
 	}
 
