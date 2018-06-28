@@ -44,9 +44,14 @@
 		<td></td>
 		<td colspan="6" style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">PERIODO SUJETO A REVISIÓN:</td>
 		<td style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">DE:</td>
-		<td colspan="2" style="border: 8px solid #000;">{{ $incidencia->fecha_inicio }}</td>
+		<td colspan="2" style="border: 8px solid #000;">
+			<?= date('d-m-Y', strtotime($incidencia->fecha_inicio)) ?>
+		</td>
+
 		<td style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">HASTA:</td>
-		<td colspan="2" style="border: 8px solid #000;">{{ $incidencia->fecha_compromiso }}</td>
+		<td colspan="2" style="border: 8px solid #000;">
+			<?= date('d-m-Y', strtotime($incidencia->fecha_compromiso )) ?>
+		</td>
 
 	</tr>
 	<tr>

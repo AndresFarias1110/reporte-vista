@@ -58,7 +58,7 @@ class ReporteController extends Controller {
 
 	public function getReporteDF(Request $request) {
 		
-		\Excel::create('Direccion-ejecutiva-df', function($excel) {
+		\Excel::create('Direccion-funcional', function($excel) {
 			$todas_incidencias = Incidencia::all();
 			
 			$incidencias = Incidencia::select('empresa')->groupBy('empresa')->get();
@@ -86,12 +86,25 @@ class ReporteController extends Controller {
 				$sheet->loadView('direccion_funcional_df')->with('incidencias', $incidencias)->with('todas_incidencias', $todas_incidencias) ;
 			});
 
+			foreach ($incidencias as $incidencia) {
+				$arrayNombreEmpresa = explode(" ", $incidencia->empresa);
+				$nombre_pagina = "";
+				
+				foreach($arrayNombreEmpresa as $palabraEmpresa){
+					$nombre_pagina .= substr($palabraEmpresa, 0, 1);
+				}
+				# code..
+				$excel->sheet($nombre_pagina, function($sheet) use($incidencia) {
+
+				});
+			}
+
 
 		})->export('xlsx')->download();
 	}        
 
 	public function getReporteDE(Request $request) {
-		\Excel::create('Direccion-ejecutiva-de', function($excel) {
+		\Excel::create('Direccion-ejecutiva', function($excel) {
 			$todas_incidencias = Incidencia::all();
 			
 			$incidencias = Incidencia::select('empresa')->groupBy('empresa')->get();

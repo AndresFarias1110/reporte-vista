@@ -7,13 +7,13 @@
         <td><b>Direccion</b></td>
         <td colspan="3">Auditoria Interna</td>
         <td></td>
-        <td>{{ $incidencias[0]->fecha_inicio }}</td>
+        <td></td>
     </tr>
     <tr>
         <td> Puesto:</td>
         <td colspan="3">Auditoria</td>
         <td>Fecha de seguimiento:</td>
-        <td>{{ $incidencias[0]->fecha_compromiso }}</td>
+        <td></td>
     </tr>
     <tr></tr>
     <tr style="background-color: #FF8800; border: 8px solid #000; color: #ffffff; text-align: center; font-weight: 600;">

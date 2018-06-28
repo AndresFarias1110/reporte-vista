@@ -13,7 +13,7 @@
         <td colspan="5">{{ $incidencias[0]->direccion_funcional }}</td>
         <td colspan="4"></td>
         <td colspan="2"></td>
-        <td>{{ $incidencias[0]->fecha_inicio }}</td>
+        <td></td>
     </tr>
     <tr>
         <td colspan="2">
@@ -24,7 +24,7 @@
         <td colspan="2">
             <b>Fecha de seguimiento:</b>
         </td>
-        <td>{{ $incidencias[0]->fecha_compromiso }}</td>
+        <td></td>
     </tr>
 
 
