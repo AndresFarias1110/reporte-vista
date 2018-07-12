@@ -109,7 +109,7 @@ class ReporteController extends Controller {
 			
 			$incidencias = Incidencia::select('empresa')->groupBy('empresa')->get();
 
-			$excel->sheet('DIRECCIONF_DE', function($sheet) use($incidencias, $todas_incidencias){
+			$excel->sheet('GRAL', function($sheet) use($incidencias, $todas_incidencias){
 				// $sheet->setSize('B5', 30, 50);
 				// $sheet->setSize('F5', 30, 50);
 				$sheet->setSize('A1', 20, 30);
